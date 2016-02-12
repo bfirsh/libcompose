@@ -49,7 +49,7 @@ func (s *Service) Create() error {
 		return err
 	}
 
-	imageName, err := s.ensureImageExists()
+	imageName, err := s.EnsureImageExists()
 	if err != nil {
 		return err
 	}
@@ -90,7 +90,7 @@ func (s *Service) createOne(imageName string) (*Container, error) {
 	return containers[0], err
 }
 
-func (s *Service) ensureImageExists() (string, error) {
+func (s *Service) EnsureImageExists() (string, error) {
 	err := s.imageExists()
 
 	if err == nil {
@@ -192,7 +192,7 @@ func (s *Service) Up() error {
 
 	var imageName = s.imageName()
 	if len(containers) == 0 || !s.context.NoRecreate {
-		imageName, err = s.ensureImageExists()
+		imageName, err = s.EnsureImageExists()
 		if err != nil {
 			return err
 		}
@@ -358,7 +358,7 @@ func (s *Service) Scale(scale int) error {
 	}
 
 	if foundCount != scale {
-		imageName, err := s.ensureImageExists()
+		imageName, err := s.EnsureImageExists()
 		if err != nil {
 			return err
 		}

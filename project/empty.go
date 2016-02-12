@@ -78,3 +78,8 @@ func (e *EmptyService) Pause() error {
 func (e *EmptyService) Unpause() error {
 	return nil
 }
+
+// EnsureImageExists implements Service.EnsureImageExists but does nothing.
+func (e *EmptyService) EnsureImageExists() (string, error) {
+	return "", nil
+}

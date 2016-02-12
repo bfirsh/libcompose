@@ -261,6 +261,7 @@ type Service interface {
 	Scale(count int) error
 	Pause() error
 	Unpause() error
+	EnsureImageExists() (string, error)
 }
 
 // Container defines what a libcompose container provides.
