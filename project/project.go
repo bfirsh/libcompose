@@ -308,6 +308,17 @@ func (p *Project) Unpause(services ...string) error {
 	}), nil)
 }
 
+func (p *Project) Services() (services []Service, err error) {
+	for name := range p.Configs {
+		service, err := p.CreateService(name)
+		if err != nil {
+			return nil, err
+		}
+		services = append(services, service)
+	}
+	return services, nil
+}
+
 func (p *Project) perform(start, done EventType, services []string, action wrapperAction, cycleAction serviceAction) error {
 	p.Notify(start, "", nil)
 
